@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
 
 function App() {
-  return (
+  const [count, setCount] = useState(5);
+  const [value, setText] = useState('Text');
+
+  function increment() {
+    setCount(count + 1);
+  }
+
+    function decrement() {
+        setCount(count - 1);
+    }
+
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <br/>
+      <h1>{value}</h1>
+      <input
+        type={"text"}
+        value={value}
+        onChange={event => {setText(event.target.value)}}
+      />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import ClassCounter from "./components/ClassCounter";
 import Post from "./components/Post";
 import './style/app.css'
 import PostList from "./components/PostList";
+import PostCreator from "./components/PostCreator";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -19,6 +20,7 @@ function App() {
 
     return (
     <div className="App">
+      <PostCreator/>
       <PostList posts={posts} title="Список постов 1"/>
       <PostList posts={posts2} title="Список постов 2"/>
     </div>

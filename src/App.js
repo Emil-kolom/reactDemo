@@ -1,23 +1,26 @@
 import React, {useState} from "react";
 import Counter from "./components/Counter";
 import ClassCounter from "./components/ClassCounter";
+import Post from "./components/Post";
+import './style/app.css'
+import PostList from "./components/PostList";
 
 function App() {
-  const [count, setCount] = useState(5);
-  const [value, setText] = useState('Text');
-
-  function increment() {
-    setCount(count + 1);
-  }
-
-    function decrement() {
-        setCount(count - 1);
-    }
+  const [posts, setPosts] = useState([
+    {id: 1, title: 'Map', body: "Description"},
+    {id: 2, title: 'In object', body: "Description"},
+    {id: 3, title: 'post', body: "Description"}
+  ]);
+  const [posts2, setPosts2] = useState([
+    {id: 1, title: 'Python', body: "Description"},
+    {id: 2, title: 'Python 2', body: "Description"},
+    {id: 3, title: 'Python 3', body: "Description"}
+  ]);
 
     return (
     <div className="App">
-      <Counter/>
-      <ClassCounter/>
+      <PostList posts={posts} title="Список постов 1"/>
+      <PostList posts={posts2} title="Список постов 2"/>
     </div>
   );
 }

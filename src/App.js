@@ -13,7 +13,7 @@ function App() {
     {id: 3, title: 'post', body: "Description"}
   ]);
   const [posts2, setPosts2] = useState([
-    {id: 1, title: 'Python', body: "Description"},
+    {id: 5, title: 'Python', body: "Description"},
     {id: 2, title: 'Python 2', body: "Description"},
     {id: 3, title: 'Python 3', body: "Description"}
   ]);

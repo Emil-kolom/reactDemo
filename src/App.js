@@ -12,17 +12,15 @@ function App() {
     {id: 2, title: 'In object', body: "Description"},
     {id: 3, title: 'post', body: "Description"}
   ]);
-  const [posts2, setPosts2] = useState([
-    {id: 1, title: 'Python', body: "Description"},
-    {id: 2, title: 'Python 2', body: "Description"},
-    {id: 3, title: 'Python 3', body: "Description"}
-  ]);
+
+  const createPost = (newPost) =>{
+    setPosts([...posts, newPost])
+  }
 
     return (
     <div className="App">
-      <PostCreator/>
+      <PostCreator create={createPost}/>
       <PostList posts={posts} title="Список постов 1"/>
-      <PostList posts={posts2} title="Список постов 2"/>
     </div>
   );
 }

@@ -17,10 +17,19 @@ function App() {
     setPosts([...posts, newPost])
   }
 
+  function removePost(post){
+    setPosts(posts.filter(p=>p.id !== post.id))
+  }
+
     return (
     <div className="App">
       <PostCreator create={createPost}/>
-      <PostList posts={posts} title="Список постов 1"/>
+      {posts.length !== 0
+          ?
+          <PostList remove={removePost} posts={posts} title="Список постов 1"/>
+          :
+          <h1 style={{textAlign: 'center'}}>Посты не найдены</h1>
+      }
     </div>
   );
 }

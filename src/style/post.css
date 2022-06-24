@@ -10,4 +10,11 @@
     margin-bottom: 10px;
     max-width: 800px;
     min-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post__content{
+    word-break: break-all;
 }

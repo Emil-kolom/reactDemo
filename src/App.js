@@ -5,6 +5,8 @@ import PostCreator from "./components/PostCreator";
 import MySelect from "./components/UI/select/MySelect";
 import MyInput from "./components/UI/Input/MyInput";
 import PostFilter from "./components/PostFilter";
+import MyModal from "./components/UI/modal/MyModal";
+import MyButton from "./components/UI/button/MyButton";
 
 function App() {
     const [posts, setPosts] = useState([
@@ -13,6 +15,7 @@ function App() {
         {id: 3, title: 'post', body: "Description"}
     ]);
     const [filter, setFilter] = useState({sort:'', query:''});
+    const [modal, setModal] = useState(false);
 
     //useMemo - кеширует и отслеживает изменения каждого объекта из переданных в массиве 2 параметром
     const sortedPosts = useMemo(()=>{
@@ -37,7 +40,12 @@ function App() {
 
     return (
         <div className="App">
-            <PostCreator create={createPost}/>
+            <MyButton onClick={()=>setModal(true)}>
+                Создать пост
+            </MyButton>
+            <MyModal visible={modal} setVisible={setModal}>
+                <PostCreator create={createPost}/>
+            </MyModal>
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}

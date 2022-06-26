@@ -18,3 +18,21 @@
 .post__content{
     word-break: break-all;
 }
+
+.post-enter {
+    opacity: 50%;
+    transform: translateX(-250px);
+}
+.post-enter-active {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: all 500ms ease-in;
+}
+.post-exit {
+    opacity: 1;
+}
+.post-exit-active {
+    opacity: 20%;
+    transform: translateX(-250px);
+    transition: all 500ms ease-in;
+}

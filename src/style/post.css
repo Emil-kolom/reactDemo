@@ -32,7 +32,7 @@
     opacity: 1;
 }
 .post-exit-active {
-    opacity: 20%;
+    opacity: 0;
     transform: translateX(-250px);
     transition: all 500ms ease-in;
 }

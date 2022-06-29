@@ -15,7 +15,7 @@ const PostList = ({posts, title, remove}) => {
 				{posts.map(post =>
 					<CSSTransition
 						key={post.id}
-						timeout={500}
+						timeout={300}
 						classNames="post"
 					>
 						<Post remove={remove} post={post} />

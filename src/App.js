@@ -9,15 +9,24 @@ import {usePosts} from "./hooks/usePosts";
 import PostService from "./API/PostService";
 import Loader from "./components/UI/loader/Loader";
 import {useFetching} from "./hooks/useFetching";
+import {getPageCount} from "./util/pages";
+import Pagination from "./components/UI/pagination/Pagination";
 
 function App() {
 	const [posts, setPosts] = useState([]);
 	const [filter, setFilter] = useState({sort:'', query:''});
 	const [modal, setModal] = useState(false);
+	const [totalPage, setTotalPage] = useState(0);
+	const [limitPage, setLimitPage] = useState(10);
+	const [page, setPage] = useState(1);
 	const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query);
+
 	const [fetchPosts, isPostLoading, postError] = useFetching(async ()=>{
-		const posts = await PostService.getAll();
-		setPosts(posts);
+		const response = await PostService.getAll(limitPage, page);
+		await setTimeout(()=>{},12300 )
+		setPosts(response.data);
+		const totalCount = parseInt(response.headers['x-total-count']);
+		setTotalPage(getPageCount(totalCount,limitPage));
 	})
 
 	//Второй параметр - отслеживаемые компоненты
@@ -26,7 +35,7 @@ function App() {
 			fetchPosts().catch((e)=>{
 				console.log(e)
 			});
-		}, []);
+		}, [page]);
 
 	const createPost = (newPost) =>{
 		setPosts([...posts, newPost])
@@ -35,7 +44,6 @@ function App() {
 	function removePost(post){
 		setPosts(posts.filter(p=>p.id !== post.id))
 	}
-
 	return (
 		<div className="App">
 			<MyButton onClick={()=>setModal(true)}>
@@ -48,10 +56,20 @@ function App() {
 				filter={filter}
 				setFilter={setFilter}
 			/>
+			<Pagination
+				page={page}
+				changePage={setPage}
+				totalPages={totalPage}
+			/>
 			{isPostLoading
 				? <div style={{display:"flex", justifyContent: "center"}}><Loader/></div>
 				: <PostList remove={removePost} posts={sortedAndSearchPosts} title="Список постов 1"/>
 			}
+			<Pagination
+					page={page}
+					changePage={setPage}
+					totalPages={totalPage}
+			/>
 		</div>
 	);
 }

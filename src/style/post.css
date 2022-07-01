@@ -36,3 +36,8 @@
     transform: translateX(-250px);
     transition: all 200ms ease-in;
 }
+
+button.page_current{
+    color: orangered;
+    border: 1px solid orangered;
+}

@@ -1,5 +1,4 @@
 import {useMemo} from "react";
-import {tab} from "@testing-library/user-event/dist/tab";
 
 export const useSortedPosts = (posts, sort) => {
 	return useMemo(() => {

@@ -19,6 +19,10 @@
     word-break: break-all;
 }
 
+.post__title{
+    cursor: pointer;
+}
+
 .post-enter {
     opacity: 50%;
     transform: translateX(-250px);
